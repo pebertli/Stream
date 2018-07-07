@@ -5,6 +5,13 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StreamServer", "StreamServer\StreamServer.vcxproj", "{7B013598-B613-4FDD-99EE-4F8A2CFF9B48}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{69ED252A-5554-43AE-94A7-4B5329772CC6}"
+	ProjectSection(SolutionItems) = preProject
+		Message.cpp = Message.cpp
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StreamClient", "StreamClient\StreamClient.vcxproj", "{588D2294-EE6F-4F49-BF4F-C9498CAB4B7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +28,14 @@ Global
 		{7B013598-B613-4FDD-99EE-4F8A2CFF9B48}.Release|x64.Build.0 = Release|x64
 		{7B013598-B613-4FDD-99EE-4F8A2CFF9B48}.Release|x86.ActiveCfg = Release|Win32
 		{7B013598-B613-4FDD-99EE-4F8A2CFF9B48}.Release|x86.Build.0 = Release|Win32
+		{588D2294-EE6F-4F49-BF4F-C9498CAB4B7D}.Debug|x64.ActiveCfg = Debug|x64
+		{588D2294-EE6F-4F49-BF4F-C9498CAB4B7D}.Debug|x64.Build.0 = Debug|x64
+		{588D2294-EE6F-4F49-BF4F-C9498CAB4B7D}.Debug|x86.ActiveCfg = Debug|Win32
+		{588D2294-EE6F-4F49-BF4F-C9498CAB4B7D}.Debug|x86.Build.0 = Debug|Win32
+		{588D2294-EE6F-4F49-BF4F-C9498CAB4B7D}.Release|x64.ActiveCfg = Release|x64
+		{588D2294-EE6F-4F49-BF4F-C9498CAB4B7D}.Release|x64.Build.0 = Release|x64
+		{588D2294-EE6F-4F49-BF4F-C9498CAB4B7D}.Release|x86.ActiveCfg = Release|Win32
+		{588D2294-EE6F-4F49-BF4F-C9498CAB4B7D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
