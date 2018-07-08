@@ -2,8 +2,7 @@
 #include <string>
 #include <sstream>
 #include <types/string.hpp>
-//#include <types/polymorphic.hpp>
-#include <archives/binary.hpp>
+#include <types/polymorphic.hpp>
 
 // Base class
 class Shape {
@@ -23,26 +22,19 @@ class Circle : public Shape
 public:	
 	float radius;	
 
-	Circle() = default;
+	/*Circle() = default;
 	Circle(std::string c, float r, int x, int y)
 	{
 		colour = c;
 		radius = r;
 		centerX = x;
 		centerY = y;
-	}
+	}*/
 
-	float area()
-	{
-		return 3.1418*radius*radius;
-	}
+	float area();
+	
 
-	std::string toString()
-	{
-		std::ostringstream ret;
-		ret << "I am a circle in the server. My attributes are: colour - " << colour << ", radius -  " << radius << ", centerX -  " << centerX << ", centerY -  " << centerY;
-		return ret.str();
-	}
+	std::string toString();
 
 	template<class Archive>	void serialize(Archive & archive)
 	{
@@ -57,26 +49,18 @@ class Square : public Shape
 public:	
 	float side;
 	
-	Square() = default;
+	/*Square() = default;
 	Square(std::string c, float r, int x, int y)
 	{
 		colour = c;
 		side = r;
 		centerX = x;
 		centerY = y;
-	}
+	}*/
 
-	float area()
-	{
-		return side*side;
-	}
+	float area();
 
-	std::string toString()
-	{
-		std::ostringstream ret;
-		ret << "I am a square. My attributes are: colour - " << colour << ", side -  " << side << ", centerX -  " << centerX << ", centerY -  " << centerY;
-		return ret.str();
-	}
+	std::string toString();	
 
 	template<class Archive>	void serialize(Archive & archive)
 	{
@@ -84,12 +68,18 @@ public:
 	}
 };
 
-//CEREAL_REGISTER_TYPE(Circle);
-//CEREAL_REGISTER_TYPE(Square);
-//
-//CEREAL_REGISTER_POLYMORPHIC_RELATION(Shape, Circle)
-//CEREAL_REGISTER_POLYMORPHIC_RELATION(Shape, Square)
-//
+#include <archives/binary.hpp>
+
+// Register DerivedClassOne
+CEREAL_REGISTER_TYPE(Circle);
+CEREAL_REGISTER_TYPE(Square);
+
+// Note that there is no need to register the base class, only derived classes
+//  However, since we did not use cereal::base_class, we need to clarify
+//  the relationship (more on this later)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(Shape, Circle)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(Shape, Square)
+
 //CEREAL_REGISTER_DYNAMIC_INIT(Message)
 
 class Message
@@ -98,8 +88,7 @@ class Message
 public:
 	int command;
 	std::string message;
-	//TODO shabe base class
-	Circle circle;
+	Shape obj;
 
 	Message() = default;
 
@@ -111,8 +100,8 @@ public:
 		msg.message = m;
 		if (obj)
 		{
-			Circle* c = static_cast<Circle *>(obj);
-			msg.circle = *c;
+			Shape* c = static_cast<Shape *>(obj);
+			msg.obj = *c;
 		}
 
 		std::ostringstream os(std::ios::binary);
@@ -138,7 +127,7 @@ public:
 
 	template<class Archive>	void serialize(Archive & archive)
 	{
-		archive(command, message, circle);
+		archive(command, message, obj);
 	}
 
 	

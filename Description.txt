@@ -1,3 +1,4 @@
+C++ project as requested by StreamLabs. Thank you for the opportunity
 
 Pebertli Nils Alho Barata - pebertli@gmail.com
 PhD in Virtual Reality
@@ -5,7 +6,32 @@ MSc in Artificial Intelligence
 BSc in Computer Engineering
 Love Games and Skateboard.
 
-----C++ project as requested by StreamLabs. Thank you for the opportunity----
+-------------------------------------------------------------------------------------------------------------------------
+Create 2 C++ console applications, one will be the client and the other one, the server. 
+https://paste.ee/p/L7ZCu
+-------------------------------------------------------------------------------------------------------------------------
 
-check atomic instructions
-send the desired proceure to be call on server
+Windows
+Use Cereal library for serialization
+Use the overlapped instead of multithread, overhead, share data between clients
+All the requirements were developed
+The Client can: 
+Execute the server or client in any order
+Try with multiple clients
+read operation is async but the listening it self is not. For example, 
+
+The 8 hours wasn't enough to check things as:
+- check atomic instructions
+- send the desired proceure to be call on server
+- Check duplicated servers
+- a simple polymorphism in square and circle
+
+
+
+Well as i said before i try to include that class into a gui framework called Qxt. So i don't know how much pipes a possible user wants to create.
+
+If i use threading every pipe and every new instance of the pipe would need a own thread. So there is really the question if using a thread for every pipe is not a bit heavy for windows. Well opening to many pipes would be too heavy too...
+I implemented a testcase where it was possible to do what i want without threads so i think i will use the overlapped i/o way.
+Every connected instance of a pipe will use two events one event to monitor that new data is availabe and one that indicates a overlapped write is finished. Its absolutely okay to have a pending read when starting a write to the pipe. I tested it and it worked perfectly. So there is a pending read all the time waiting for new data.
+
+I love this chalenge and, again, thank you for the opportunity
