@@ -3,6 +3,8 @@
 #include <sstream>
 #include <string>
 #include <types/string.hpp>
+#include <types/string.hpp>
+#include <archives/binary.hpp>
 
 class Circle
 {
@@ -48,11 +50,42 @@ public:
 	Circle circle;
 
 	Message() = default;
+
+	////using the Cereal library to serialize/unserialize a option, a message and an object of type Circle
+	static std::string Marshalling(int option, std::string m, void* obj)
+	{		
+		Message msg;
+		msg.command = option;
+		msg.message = m;
+		if (obj)
+		{
+			Circle* c = static_cast<Circle *>(obj);
+			msg.circle = *c;
+		}
+
+		std::ostringstream os(std::ios::binary);
+		cereal::BinaryOutputArchive oarchive(os);
+		oarchive(msg);
+
+		return os.str();
+	}
+
+	////using the Cereal library to serialize/unserialize a option, a message and an object of type Circle
+	static Message Unmarshalling(std::string buffer)
+	{
+		Message m;
+		if (buffer != "")
+		{
+			std::istringstream is(buffer);
+			cereal::BinaryInputArchive iarchive(is);
+			iarchive(m);
+		}
+
+		return m;
+	}
+
 	template<class Archive>	void serialize(Archive & archive)
 	{
 		archive(command, message, circle);
 	}
-
-
-
 };
