@@ -8,6 +8,8 @@
 
 class Circle
 {
+
+
 public:
 	std::string colour;
 	float radius;
@@ -23,9 +25,9 @@ public:
 		centerY = y;
 	}
 
-	void show()
+	float area()
 	{
-		std::cout << toString();
+		return 3.1418*radius*radius;
 	}
 
 	std::string toString()

@@ -6,3 +6,6 @@ BSc in Computer Engineering
 Love Games and Skateboard.
 
 ----C++ project as requested by StreamLabs. Thank you for the opportunity----
+
+check atomic instructions
+send the desired proceure to be call on server
