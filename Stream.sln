@@ -14,6 +14,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{69ED25
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StreamClient", "StreamClient\StreamClient.vcxproj", "{588D2294-EE6F-4F49-BF4F-C9498CAB4B7D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Executables", "Executables", "{DB79440C-2DB5-4DDA-AEBC-411BC011284E}"
+	ProjectSection(SolutionItems) = preProject
+		Release\StreamClient.exe = Release\StreamClient.exe
+		Release\StreamServer.exe = Release\StreamServer.exe
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

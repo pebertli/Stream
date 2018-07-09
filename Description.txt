@@ -26,6 +26,6 @@ The 8 hours wasn't enough to check things as:
 - The two event handlers approach
 - The multithread approach instead overlapped approach
 
-The executable files are in Stream\Release folder
+The executable files are in Stream\Executables folder
 
 I loved this chalenge and, again, thank you for the opportunity
