@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{69ED25
 	ProjectSection(SolutionItems) = preProject
 		Description.txt = Description.txt
 		Message.cpp = Message.cpp
+		Shape.cpp = Shape.cpp
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StreamClient", "StreamClient\StreamClient.vcxproj", "{588D2294-EE6F-4F49-BF4F-C9498CAB4B7D}"
