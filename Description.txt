@@ -11,27 +11,21 @@ Create 2 C++ console applications, one will be the client and the other one, the
 https://paste.ee/p/L7ZCu
 -------------------------------------------------------------------------------------------------------------------------
 
-Windows
-Use Cereal library for serialization
-Use the overlapped instead of multithread, overhead, share data between clients
-All the requirements were developed
-The Client can: 
-Execute the server or client in any order
-Try with multiple clients
-read operation is async but the listening it self is not. For example, 
+- All the requirements were developed
+- The target platform is only Windows
+- I have used the Cereal library for serialization
+- The data sent trhough the pipe, is a serialization of a class Message, which encapsulates a int command, a string message and the content itself
+- Any object can be the content, since its inherit from the base class.  The Shape base classe was choosen to demonstrate tha client can send/receive different objects to/from the server. (Try the options 8 and 9 of the server)
+- I have used the approach with Completion Routines because only one thread is used for each client connected (especially useful on Windows). That also helps to share data between clients (Try the options 4, 5, 6 and 7)
+- The Client and Server has Async and Sync functions. The Async functions, however, keep listening the pipe until that some content has been put in there, in other words, the async is in the read and write functions, not in the Listening. One way to overcome that is use two event handlers. One event to liestening that new data is availabe in the pipe and another to indicate a write task is finished. (Try functions 1, 2 and 3)
+- You can try to connect multiple clients to the same server (Try the options 4, 5, 6 and 7)
 
 The 8 hours wasn't enough to check things as:
-- check atomic instructions
-- send the desired proceure to be call on server
-- Check duplicated servers
-- a simple polymorphism in square and circle
+- atomic instructions
+- duplicated servers
+- The two event handlers approach
+- The multithread approach instead overlapped approach
 
+The executable files are in Stream\Release folder
 
-
-Well as i said before i try to include that class into a gui framework called Qxt. So i don't know how much pipes a possible user wants to create.
-
-If i use threading every pipe and every new instance of the pipe would need a own thread. So there is really the question if using a thread for every pipe is not a bit heavy for windows. Well opening to many pipes would be too heavy too...
-I implemented a testcase where it was possible to do what i want without threads so i think i will use the overlapped i/o way.
-Every connected instance of a pipe will use two events one event to monitor that new data is availabe and one that indicates a overlapped write is finished. Its absolutely okay to have a pending read when starting a write to the pipe. I tested it and it worked perfectly. So there is a pending read all the time waiting for new data.
-
-I love this chalenge and, again, thank you for the opportunity
+I loved this chalenge and, again, thank you for the opportunity
